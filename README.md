@@ -1,3 +1,5 @@
+You can find sample video animation made using this tool [here](https://youtu.be/vNn5GJM4XJw)
+
 ### How to run?
 
 Open the folder A4 *(where makefile is present)* in terminal and run the
