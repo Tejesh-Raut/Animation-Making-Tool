@@ -1,0 +1,144 @@
+<!Doctype HTML>
+<html>
+<head>
+<h1>CS475 Assignment4 </h1>
+<h2>Toys Animation</h2>
+<h3>Team members: Tejesh Raut(140050008) and Ashna Gaur(140050087)</h3>
+</head>
+<body>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vNn5GJM4XJw" frameborder="0" gesture="media" allowfullscreen></iframe>
+<h3>How to run?</h3>
+<p>Open the folder A4 <i>(where makefile is present)</i> in terminal and run the command "<b>make</b>" to compile the project. To open the project open the executable using the command "<b>./animation</b>". </p>
+<p>By default it is in Recoding mode</p>
+<p><b>To record keyframes for animation:</b></p>
+<p>Make suitable changes in the screen and then press "<b>K</b>" to capture the keyframe. After all keyframes have been captured, press "<b>L</b>" to save them to a file.</p>
+<p>Keyframes will contain the value of camera coordinates, field of view of camera, lights status and translation parameters, rotational parameters of both toys. While playing animation all these keys will be linearly interpolated</p>
+<p>While saving the keyframes, one more file containing the interpolated camera coordinates, of the Bezier curve created using camera coordinates from keyframes as control points, will also be saved. This will be used when user wishes to move camera along the Bezier curve while playback</p>
+<p>
+	<img src="report_images/p00.png" alt="p00.png">
+</p>
+<p><b>To playback the animation using already created keyframe:</b></p>
+<p>Press <b>P</b> and then enter filename of keyframe. It will also ask if you want camera coordinates to be in Bezier curve or linearly interpolated. Specify the file containing Bezier coordinates if asked. Files final.txt and final_bezier.txt already given for the same</p>
+<p>
+	<img src="report_images/p01.png" alt="p01.png">
+</p>
+<p>Image frames will be saved in the folder "image_frames". They will be inverted and in ppm file format. To correct orientation and convert to jpg format enter the command: <br><b>make jpg_flip anim_name=&ltanimation name&gt</b></p>
+<p>
+	<img src="report_images/p02.png" alt="p02.png">
+</p>
+<p>To make video out of these frames enter the command: <br><b>make myvideo anim_name=&ltanimation name&gt</b><br>Video will be saved in the video folder in "avi" file format</p>
+<p>To add audio to the video, enter the command: <br><b>make attach_sound anim_name=&ltanimation name&gt</b><br>A default audio saved in sample_audio folder will be attached. You can change the audio file by editing makefile </p>
+<p>Final video will be saved in the "<b>final_video</b>" folder</p>
+<h2>Controls:</h2>
+<p>
+	You need to select any object before applying rotations to it. Initially camera is placed at the position (1.5, 1.5, 1.5) and has field of view 45 degrees. Here are the controls needed for the same:
+</p>
+<ul>
+<li>"<b>K</b>" - Capture current key-frame</li>
+<li>"<b>L</b>" - Save all captured key-frames to file</li>
+<li>"<b>P</b>" - Start/Stop Playback of animation</li>
+<li>"<b>1</b>" - Select lower object number </li>
+<li>"<b>2</b>" - Select higher object number </li>
+<li>"<b>3</b>" - Toggle between models- Humanoid and simple toy(windmill) </li>
+<li>"<b>4</b>" - Turn ON/OFF the first directional light coming from the infinite position (0.5, 0.0, 1.0, 0.0) which means light comes from little right side from front </li>
+<li>"<b>5</b>" - Turn ON/OFF the second directional light coming from the infinite position (0.0, 1.0, 0.0, 0.0) which means light comes from the top side </li>
+<li>"<b>6</b>" - Turn ON/OFF the spotlight </li>
+<li>"<b>W</b>" - translate along positive y axis by 0.1</li>
+<li>"<b>S</b>" - translate along negative y axis by 0.1</li>
+<li>"<b>A</b>" - translate along negative x axis by 0.1</li>
+<li>"<b>D</b>" - translate along positive x axis by 0.1</li>
+<li>"<b>Z</b>" - translate along negative z axis by 0.1</li>
+<li>"<b>X</b>" - translate along positive z axis by 0.1</li>
+<li>"<b>N</b>" - <b>zooms in</b>: decreases the field of view of camera</li>
+<li>"<b>M</b>" - <b>zooms out</b>: increases the field of view of the camera</li>
+<li>"<b>UP</b>" - rotation along 2st axis by -1</li>
+<li>"<b>DOWN</b>" - rotation along 2st axis by +1</li>
+<li>"<b>LEFT</b>" - rotation along 2nd axis by -1</li>
+<li>"<b>RIGHT</b>" - rotation along 2nd axis by +1</li>
+<li>"<b>PgUp</b>" - rotation along 3rd axis by -1</li>
+<li>"<b>PgDn</b>" - rotation along 3rd axis by +1</li>
+<li>"<b>T</b>" - translate camera along positive y axis by 0.1</li>
+<li>"<b>G</b>" - translate camera along negative y axis by 0.1</li>
+<li>"<b>F</b>" - translate camera along negative x axis by 0.1</li>
+<li>"<b>H</b>" - translate camera along positive x axis by 0.1</li>
+<li>"<b>V</b>" - translate camera along negative z axis by 0.1</li>
+<li>"<b>B</b>" - translate camera along positive z axis by 0.1</li>
+</ul>
+<h2>Hierarchical Models:</h2>
+<p>
+	Position coordinates, normals, color, heirarchy, etc of models are well commented and stored in the files humanoid_coordinates.hpp, windmill_coordinates.hpp and cube_coordinates.hpp. 
+</p>
+<p>
+	<h3>Humanoid toy:</h3>
+	<br>
+	All objects can be rotated along any axis, except the lower arms and legs. Lower arms can be rotated only along the 3rd axis and lower legs can be rotated only along the 1st axis.
+</p>
+<p>
+	<img src="report_images/hierarchy_humanoid.png" alt="hierarchy_humanoid.png">
+</p>
+<p>
+	<h3>Simple toy(Windmill):</h3>
+	<br>
+	Base can be rotated along any axis. Pivot can be rotated only along 1st axis. Fan can be rotated only along 3rd axis.
+</p>
+<p>
+	<img src="report_images/windmill.png" alt="windmill.png">
+</p>
+<h2>Images:</h2>
+<p>
+	When all lights are turned ON:
+</p>
+<p>
+	<img src="report_images/01.png" alt="01.png">
+</p>
+<p>
+	When all lights are turned ON except the first directional light:
+</p>
+<p>
+	<img src="report_images/02.png" alt="02.png">
+</p>
+<p>
+	When all lights are turned ON except the second directional light:
+</p>
+<p>
+	<img src="report_images/03.png" alt="03.png">
+</p>
+<p>
+	When all lights are turned ON except the spot-light:
+</p>
+<p>
+	<img src="report_images/04.png" alt="04.png">
+</p>
+<p>
+	Just some random images after few transformations:
+</p>
+<p>
+	<img src="report_images/05.png" alt="05.png">
+	<img src="report_images/06.png" alt="06.png">
+</p>
+<h2>References</h2>
+<ul>
+	<li>
+		<a href="http://www.glfw.org/docs/3.0/group__time.html">GLFW: Time input</a>
+	</li>
+	<li>
+		<a href="https://www.cse.iitb.ac.in/~paragc/teaching/2017/cs475/demonotes.shtml"> Capturing the OpenGL Screen to PPM images and making video from captured frames</a>
+	</li>
+	<li>
+		<a href="http://www.opengl-tutorial.org/beginners-tutorials/tutorial-3-matrices/">Tutorial 3 : Matrices</a>
+	</li>
+	<li>
+		<a href="http://www.lighthouse3d.com/tutorials/glsl-tutorial/spotlights/">  GLSL Tutorial – Spotlights » Lighthouse3d.com</a>
+	</li>
+	<li>
+		<a href="https://stackoverflow.com/questions/11380619/send-a-bool-value-to-a-fragment-shader-opengl-es-2-0-on-ios-iphone">Send a BOOL value to a Fragment Shader OpenGL ES 2.0 on iOS / iPhone - Stack Overflow</a>
+	</li>
+	<li>
+		<a href="https://github.com/paragchaudhuri/cs475-tutorials/tree/master/Tutorial_05">Tutorial 5: Shading</a>
+	</li>
+	<li>
+		<a href="https://github.com/paragchaudhuri/cs475-tutorials/tree/master/Tutorial_06">Tutorial 6: Texturing</a>
+	</li>
+</ul>
+</body>
+</html>
